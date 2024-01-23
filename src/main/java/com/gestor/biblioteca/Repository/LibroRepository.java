@@ -1,6 +1,6 @@
-package com.gestion.biblioteca.Repository;
+package com.gestor.biblioteca.Repository;
 
-import com.gestion.biblioteca.Entities.Libro;
+import com.gestor.biblioteca.Entities.Libro;
 import org.springframework.data.repository.CrudRepository;
 
 public interface LibroRepository extends CrudRepository<Libro,Long> {

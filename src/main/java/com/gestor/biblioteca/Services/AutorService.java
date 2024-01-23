@@ -1,7 +1,7 @@
-package com.gestion.biblioteca.Services;
+package com.gestor.biblioteca.Services;
 
-import com.gestion.biblioteca.Entities.Autor;
-import com.gestion.biblioteca.Repository.AutorRepository;
+import com.gestor.biblioteca.Entities.Autor;
+import com.gestor.biblioteca.Repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

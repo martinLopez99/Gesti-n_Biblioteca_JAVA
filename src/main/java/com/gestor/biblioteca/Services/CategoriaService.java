@@ -1,7 +1,7 @@
-package com.gestion.biblioteca.Services;
+package com.gestor.biblioteca.Services;
 
-import com.gestion.biblioteca.Entities.Categoria;
-import com.gestion.biblioteca.Repository.CategoriaRepository;
+import com.gestor.biblioteca.Entities.Categoria;
+import com.gestor.biblioteca.Repository.CategoriaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
