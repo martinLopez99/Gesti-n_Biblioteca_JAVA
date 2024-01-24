@@ -1,11 +1,13 @@
 package com.gestor.biblioteca.Services;
 
+import com.gestor.biblioteca.DTO.AutorListResponse;
 import com.gestor.biblioteca.Entities.Autor;
 import com.gestor.biblioteca.Repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AutorService {
@@ -13,11 +15,18 @@ public class AutorService {
     @Autowired
     AutorRepository autorRepository;
 
-    public List<Autor> findAll(){
-        return (List<Autor>) autorRepository.findAll();
+    public List<AutorListResponse> obtenerAutores(){
+
+        List<Autor> autores = (List<Autor>) autorRepository.findAll();
+
+        return autores.stream().map(
+                autor -> {
+                    return new AutorListResponse(autor.getNombre(),autor.getLibros());
+                }
+        ).collect(Collectors.toList());
     }
 
-    public Autor findById(Long id){
+    public Autor obtenerAutor(Long id){
             return (Autor) autorRepository.findById(id).get();
     }
 
