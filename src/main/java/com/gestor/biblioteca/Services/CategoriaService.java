@@ -1,5 +1,6 @@
 package com.gestor.biblioteca.Services;
 
+import com.gestor.biblioteca.DTO.CategoriaListResponse;
 import com.gestor.biblioteca.Entities.Categoria;
 import com.gestor.biblioteca.Repository.CategoriaRepository;
 import jakarta.transaction.Transactional;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoriaService {
@@ -14,8 +16,15 @@ public class CategoriaService {
     @Autowired
     CategoriaRepository categoriaRepository;
 
-    public List<Categoria> findAll(){
-        return (List<Categoria>) categoriaRepository.findAll();
+    public List<CategoriaListResponse> findAll(){
+
+        List<Categoria> categorias = (List<Categoria>) categoriaRepository.findAll();
+
+        return categorias.stream().map(
+                categoria -> {
+                    return new CategoriaListResponse(categoria.getNopmbre(),categoria.getLibros());
+                }
+        ).collect(Collectors.toList());
     }
 
     public Categoria findById(Long id){

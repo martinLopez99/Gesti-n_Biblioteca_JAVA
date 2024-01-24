@@ -1,5 +1,6 @@
 package com.gestor.biblioteca.Services;
 
+import com.gestor.biblioteca.DTO.EditorialListResponse;
 import com.gestor.biblioteca.Entities.Editorial;
 import com.gestor.biblioteca.Repository.EditorialRepository;
 import jakarta.transaction.Transactional;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EditorialService {
@@ -16,8 +18,13 @@ public class EditorialService {
 
     // findAll, findById, save y delete
 
-    public List<Editorial> findAll(){
-        return (List<Editorial>) editorialRepository.findAll();
+    public List<EditorialListResponse> findAll(){
+        List<Editorial> editoriales =  (List<Editorial>) editorialRepository.findAll();
+        return editoriales.stream().map(
+                editorial -> {
+                    return new EditorialListResponse(editorial.getNombre(),editorial.getDireccion(), editorial.getTelefono());
+                }
+        ).collect(Collectors.toList());
     }
 
     public Editorial findById(Long id){
