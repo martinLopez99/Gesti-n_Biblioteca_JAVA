@@ -16,7 +16,7 @@ public class LibroService {
     @Autowired
     LibroRepository libroRepository;
 
-    public List<LibroListResponse> findAll(){
+    public List<LibroListResponse> obtenerLibros(){
 
         List<Libro>libros = (List<Libro>) libroRepository.findAll();
 
@@ -28,7 +28,7 @@ public class LibroService {
 
     }
 
-    public Libro findAllById(Long id){
+    public Libro obtenerLibro(Long id){
         return (Libro) libroRepository.findById(id).get();
     }
 

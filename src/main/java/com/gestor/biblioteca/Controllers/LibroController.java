@@ -18,20 +18,20 @@ import java.util.Map;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("api-biblioteca")
+@RequestMapping("api-biblioteca-L")
 public class LibroController {
 
     @Autowired
     LibroService libroService;
 
-    //http://localhost:8080/api-biblioteca/libros
+    //http://localhost:8080/api-biblioteca-L/libros
     @GetMapping(value = "/libros")
     public ResponseEntity<?> obtenerLibros(){
         List<LibroListResponse> libros = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            libros = libroService.findAll();
+            libros = libroService.obtenerLibros();
         } catch (DataAccessException dataAccessException){
             response.put("mensaje","Error al consultar base de datos");
             return new ResponseEntity<Map<String,Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -43,14 +43,14 @@ public class LibroController {
 
     }
 
-    //http://localhost:8080/api-biblioteca/libro/{id}
+    //http://localhost:8080/api-biblioteca-L/libro/{id}
     @GetMapping(value = "/libro/{id}")
     public ResponseEntity<?> obtenerLibro(@PathVariable Long id){
         Libro libro = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            libro = libroService.findAllById(id);
+            libro = libroService.obtenerLibro(id);
         } catch (DataAccessException dataAccessException){
             response.put("mensaje","Error al consultar base de datos");
             return new ResponseEntity<Map<String,Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);

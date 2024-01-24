@@ -33,7 +33,7 @@ public class Autor {
         this.id = id;
     }
 
-    public String getNopmbre() {
+    public String getNombre() {
         return nopmbre;
     }
 
